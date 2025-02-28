@@ -1,0 +1,16 @@
+[package]
+name = "ratui_lib"
+version = "0.1.1"
+edition = "2024"
+license = "MIT"
+
+[dependencies]
+anyhow = { version = "1.0.96", features = ["backtrace"] }
+crossterm = "0.28.1"
+ratatui = "0.29.0"
+rand = "0.9.0"
+thiserror = "2.0.11"
+
+[lib]
+name = "ratui_lib"
+path = "src/lib.rs"
