@@ -105,7 +105,8 @@ impl Pattern for WavePattern {
                     + ((f64::from(x) + f64::from(y)) * 0.1 - self.time * 1.5).sin() * 2.0;
 
                 let char_index = {
-                    let normalized = (wave + 10.0) * (f64::from(u32::try_from(self.chars.len()).unwrap_or(1)) / 20.0);
+                    let normalized = (wave + 10.0)
+                        * (f64::from(u32::try_from(self.chars.len()).unwrap_or(1)) / 20.0);
                     let index = normalized.abs().floor();
                     if index.is_nan() {
                         0
@@ -234,8 +235,6 @@ impl Default for RainPattern {
 #[cfg(test)]
 mod tests {
     use super::*;
-    
-    
 
     #[test]
     fn test_animation_timer() {
@@ -260,16 +259,14 @@ mod tests {
         pattern.render(area, &mut buffer);
 
         // Check that the buffer is not empty
-        let has_content = (0..area.height).any(|y| {
-            (0..area.width).any(|x| buffer[(x, y)].symbol() != " ")
-        });
+        let has_content =
+            (0..area.height).any(|y| (0..area.width).any(|x| buffer[(x, y)].symbol() != " "));
         assert!(has_content, "Buffer should contain wave pattern");
     }
 
     #[test]
     fn test_rain_pattern() {
-        let mut pattern = RainPattern::new()
-            .speed(5.0); // Increase speed for testing
+        let mut pattern = RainPattern::new().speed(5.0); // Increase speed for testing
 
         // Add a drop at a position we know will be visible
         let x = 0.5; // This should map to the middle of the area
